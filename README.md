@@ -1,5 +1,5 @@
 # sistema compra - venta
-* [link del hosting firebase](sistemacv-gepres.web.app)
+* [link del hosting firebase](https://sistemacv-gepres.web.app/)
 * [link del repositorio backend](https://github.com/gepres/sistemacv-backend)
 * vuejs
 * vuetify
