@@ -1,5 +1,6 @@
 # sistema compra - venta
-* [link de repositorio backend](https://github.com/gepres/sistemacv-backend)
+* [link del hosting firebase](sistemacv-gepres.web.app)
+* [link del repositorio backend](https://github.com/gepres/sistemacv-backend)
 * vuejs
 * vuetify
 * jspdf
@@ -7,9 +8,15 @@
 * jwt 
 
 ## cuentas para los test
-* administrador: admin@test.com  pass:123456
-* vendedor: vendedor@test.com  pass:123456
-* almacenero: almacenero@test.com  pass:123456
+* administrador
+  * user : admin@test.com  
+  * pass : 123456
+* vendedor 
+  * user : vendedor@test.com  
+  * pass : 123456
+* almacenero
+  * user : almacenero@test.com  
+  * pass : 123456
 
 ## Project setup
 ```
