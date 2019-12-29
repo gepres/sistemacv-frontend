@@ -6,6 +6,11 @@
 * vuex
 * jwt 
 
+## cuentas para los test
+* administrador: admin@test.com  pass:123456
+* vendedor: vendedor@test.com  pass:123456
+* almacenero: almacenero@test.com  pass:123456
+
 ## Project setup
 ```
 npm install
