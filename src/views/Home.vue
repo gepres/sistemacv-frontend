@@ -1,11 +1,19 @@
 <template>
     <v-container >
       <v-row wrap>
-        <v-col cols="6" sm="6" md="6">
-          <LineChart  :chartdata="totales" :options="meses" />
+        <v-col cols="12" xs="12" sm="12" md="6" lg="6">
+          <div class="ct-chart">
+            <canvas id="chartLine2" class="chartLine">
+            </canvas>
+            <span class="font-weight-light">Ventas de los ultimos 12 meses</span>
+          </div>
         </v-col>
-        <v-col cols="6" sm="6" md="6">
-          <BarChart  :chartdata="totales" :options="meses" />
+        <v-col cols="12" class="barchart"  xs="12" sm="12" md="6" lg="6">
+           <div class="ct-chart">
+              <canvas id="chartBar" class="chartBar">
+              </canvas>
+              <span class="font-weight-light">Ventas de los ultimos 12 meses</span>
+            </div>
         </v-col>
       </v-row>
     </v-container>
@@ -14,13 +22,13 @@
 <script>
 // @ is an alias to /src
 import Chart from 'chart.js'
-import LineChart  from '@/components/LineChart.vue'
-import BarChart  from '@/components/BarChart.vue'
+// import LineChart  from '@/components/LineChart.vue'
+// import BarChart  from '@/components/BarChart.vue'
 export default {
   name: 'home',
-  components: {
-    LineChart,BarChart
-  },
+  // components: {
+  //   LineChart,BarChart
+  // },
   data(){
     return {
       valores:[],
@@ -88,7 +96,88 @@ export default {
         this.meses.push(mesn + '-' + x._id.year)
         this.totales.push(x.total)
       })
+      this.graficarLine()
+      this.graficarBar()
+    },
+
+    graficarLine(){
+      var ctx = document.getElementById('chartLine2');
+      var chartLine2 = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: this.meses,
+          datasets: [{
+            label: 'Ventas de los ultimos 12 meses',
+            data: this.totales,
+            backgroundColor: "transparent",
+            borderColor: "#2E7D32",
+            pointBackgroundColor: "#fff",
+          }]
+        },
+        options: {
+          legend: {
+            display:false
+          }
+        } 
+      })  
+    },
+
+    graficarBar(){
+      var ctx = document.getElementById('chartBar');
+      Chart.defaults.global.defaultFontColor = 'white'
+      var chartBar = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: this.meses,
+              datasets: [{
+                  label: 'Ventas de los ultimos 12 meses',
+                  data: this.totales,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.5)',
+                      'rgba(54, 162, 235, 0.5)',
+                      'rgba(255, 206, 86, 0.5)',
+                      'rgba(75, 192, 192, 0.5)',
+                      'rgba(153, 102, 255, 0.5)',
+                      'rgba(255, 159, 64, 0.5)',
+                      'rgba(255, 99, 132, 0.5)',
+                      'rgba(54, 162, 235, 0.5)',
+                      'rgba(255, 206, 86, 0.5)',
+                      'rgba(75, 192, 192, 0.5)',
+                      'rgba(153, 102, 255, 0.5)',
+                      'rgba(255, 159, 64, 0.5)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132)',
+                      'rgba(54, 162, 235)',
+                      'rgba(255, 206, 86)',
+                      'rgba(75, 192, 192)',
+                      'rgba(153, 102, 255)',
+                      'rgba(255, 159, 64)',
+                      'rgba(255, 99, 132)',
+                      'rgba(54, 162, 235)',
+                      'rgba(255, 206, 86)',
+                      'rgba(75, 192, 192)',
+                      'rgba(153, 102, 255)',
+                      'rgba(255, 159, 64)'
+                  ],
+                  borderWidth: 2,
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                  }]
+              },
+            legend: {
+              display:false
+            }
+          }
+      });
     }
+
   },
 
   mounted(){
@@ -96,5 +185,40 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+.barchart{
+  @media screen and (max-width:960px) {
+    margin-top: 2rem;
+  }
+}
+</style>
 <style lang="scss" scoped>
+.chartBar{
+  width: 90% !important;
+  border-radius: 7px;
+  box-shadow: 4px 4px 40px -15px rgba(0, 0, 0, 0.6);
+  background: #009688;
+  position: relative;
+  top:-30px;
+}
+.chartLine{
+  width: 90% !important;
+  border-radius: 7px;
+  box-shadow: 4px 4px 40px -15px rgba(0, 0, 0, 0.6);
+  background: #FB8C00;
+  position: relative;
+  top:-30px;
+}
+.ct-chart{
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  border-radius: 7px;
+  box-shadow: 4px 3px 40px -15px rgba(0, 0, 0, 0.4);
+  flex-direction: column;
+  align-items: center;
+  & span {
+    margin-bottom: 1.5rem;
+  }
+}
 </style>

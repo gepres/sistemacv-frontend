@@ -213,7 +213,7 @@
       </v-toolbar-title>
       <v-spacer />
       <div class="mr-5" v-if="logueado">
-        <span>{{nombre}}</span>
+        <span class="nameuser">{{nombre}}</span>
       <v-chip
       class="ma-2"
       color="primary"
@@ -282,6 +282,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.nameuser{
+  @media screen and (max-width:600px) {
+    display: none;
+  }
+}
 </style>

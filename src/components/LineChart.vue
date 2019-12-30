@@ -25,9 +25,9 @@ export default {
               }]
           },
           options: {
-            legend: {
-              display:false
-            }
+            // legend: {
+            //   display:false
+            // }
           }
       });
     }
